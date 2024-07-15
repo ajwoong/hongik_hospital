@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,8 +38,8 @@ public class ReservationService {
     }
 
     public List<Reservation> findMemberReserve(MemberSearchRequestDTO memberSearchRequestDTO){
-        Member member = memberRepository.findByNameAndPhone(memberSearchRequestDTO.getName(), memberSearchRequestDTO.getPhone());
-        return reservationRepository.findByMember_Id(member.getId());
+        Optional<Member> member = memberRepository.findByNameAndPhone(memberSearchRequestDTO.getName(), memberSearchRequestDTO.getPhone());
+        return reservationRepository.findByMember_Id(member.get().getId());
     }
 
     @Transactional

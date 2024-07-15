@@ -18,16 +18,19 @@ class MemberServiceTest {
 
     @Test
     @Rollback(value = false)
-    void join() {
+    void 중복회원예외_회원가입() {
 
         MemberSigninRequestDTO memberSigninRequestDTO = new MemberSigninRequestDTO();
         memberSigninRequestDTO.setName("kim");
         memberSigninRequestDTO.setPhone("010-5915-5203");
         memberService.join(memberSigninRequestDTO);
 
-        Member kim = memberService.findMemberByNamePhone("kim", "010-5915-5203");
+        MemberSigninRequestDTO memberSigninRequestDTO2 = new MemberSigninRequestDTO();
+        memberSigninRequestDTO2.setName("kim");
+        memberSigninRequestDTO2.setPhone("010-5915-523");
+        memberService.join(memberSigninRequestDTO2);
 
-        System.out.println("kim = " + kim.getPhone());
+
 
     }
 }

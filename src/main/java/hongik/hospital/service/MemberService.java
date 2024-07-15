@@ -3,11 +3,13 @@ package hongik.hospital.service;
 import hongik.hospital.domain.Member;
 import hongik.hospital.dto.MemberSigninRequestDTO;
 import hongik.hospital.repository.MemberRepository;
+import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -26,7 +28,7 @@ public class MemberService {
     }
 
 
-    public Member findMemberByNamePhone(String memberName, String memberPhone){
+    public Optional<Member> findMemberByNamePhone(String memberName, String memberPhone){
         return memberRepository.findByNameAndPhone(memberName, memberPhone);
     }
 
@@ -49,8 +51,8 @@ public class MemberService {
     }
 
     private void validateDuplicateMember(Member member) {
-        List<Member> all = memberRepository.findAll();
-        if(!all.isEmpty()){
+        Optional<Member> findMember = memberRepository.findByNameAndPhone(member.getName(), member.getPhone());
+        if(findMember.isPresent()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
