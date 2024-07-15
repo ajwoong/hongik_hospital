@@ -27,6 +27,7 @@ class MemberServiceTest {
 
         Member kim = memberService.findMemberByNamePhone("kim", "010-5915-5203");
 
+        System.out.println("kim = " + kim.getPhone());
 
     }
 }

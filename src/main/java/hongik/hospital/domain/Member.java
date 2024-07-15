@@ -29,13 +29,5 @@ public class Member {
     private  List<Record> records = new ArrayList<>();
 
 
-    public void change(MemberSigninRequestDTO memberSigninRequestDTO){
-        this.name = memberSigninRequestDTO.getName();
-        this.age = memberSigninRequestDTO.getAge();
-        this.gender = memberSigninRequestDTO.getGender();
-        this.phone = memberSigninRequestDTO.getPhone();
-        this.address= memberSigninRequestDTO.getAddress();
-    }
-
 
 }

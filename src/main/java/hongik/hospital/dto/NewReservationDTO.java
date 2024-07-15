@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class NewReservationDTO {
 
-    private Member member;
-    private Doctor doctor;
+    private Long memberId;
+    private Long doctorId;
     private LocalDateTime reservationTime;
 
 }

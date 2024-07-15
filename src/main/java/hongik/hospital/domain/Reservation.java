@@ -29,11 +29,5 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     private ReserveStatus reserveStatus;
 
-    public void change(NewReservationDTO newReservationDTO){
-        this.member = newReservationDTO.getMember();
-        this.doctor = newReservationDTO.getDoctor();
-        this.reservationTime = newReservationDTO.getReservationTime();
-    }
-
 
 }

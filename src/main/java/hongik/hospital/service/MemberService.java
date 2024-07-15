@@ -14,14 +14,38 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberService {
 
+    // 실제 서비스 //
+
     private final MemberRepository memberRepository;
 
     @Transactional
     public void join(MemberSigninRequestDTO memberSigninRequestDTO){
-        Member member = new Member();
-        member.change(memberSigninRequestDTO);
+        Member member = makeMember(memberSigninRequestDTO);
         validateDuplicateMember(member);
         memberRepository.save(member);
+    }
+
+
+    public Member findMemberByNamePhone(String memberName, String memberPhone){
+        return memberRepository.findByNameAndPhone(memberName, memberPhone);
+    }
+
+    public List<Member> findMembers(){
+        return memberRepository.findAll();
+    }
+
+
+
+    // == 구현한 함수 == //
+
+    private Member makeMember(MemberSigninRequestDTO memberSigninRequestDTO) {
+        Member member = new Member();
+        member.setName(memberSigninRequestDTO.getName());
+        member.setAge(memberSigninRequestDTO.getAge());
+        member.setGender(memberSigninRequestDTO.getGender());
+        member.setPhone(memberSigninRequestDTO.getPhone());
+        member.setAddress(memberSigninRequestDTO.getAddress());
+        return member;
     }
 
     private void validateDuplicateMember(Member member) {
@@ -30,11 +54,6 @@ public class MemberService {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
-
-    public Member findMemberByNamePhone(String memberName, String memberPhone){
-        return memberRepository.findByNamePhone(memberName, memberPhone);
-    }
-
 
 
 
