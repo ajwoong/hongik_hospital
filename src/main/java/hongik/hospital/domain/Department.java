@@ -17,6 +17,8 @@ public class Department {
 
     private String name;
 
+    private String phone;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hospital_id")
     private Hospital hospital;

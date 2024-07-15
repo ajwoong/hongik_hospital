@@ -7,10 +7,10 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter
-public class Record {
+public class Trace {
 
     @Id @GeneratedValue
-    @Column(name = "record_id")
+    @Column(name = "trace_id")
     public Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

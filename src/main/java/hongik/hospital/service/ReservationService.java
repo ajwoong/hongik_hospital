@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -55,6 +54,7 @@ public class ReservationService {
         Reservation reservation = new Reservation();
         reservation.setMember(memberRepository.findById(newReservationDTO.getMemberId()).get());
         reservation.setDoctor(doctorRepository.findById(newReservationDTO.getDoctorId()).get());
+        reservation.setReservationTime(newReservationDTO.getReservationTime());
         reservation.setReservationTime(newReservationDTO.getReservationTime());
         return reservation;
     }

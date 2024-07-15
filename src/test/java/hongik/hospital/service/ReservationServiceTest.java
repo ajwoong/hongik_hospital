@@ -1,5 +1,6 @@
 package hongik.hospital.service;
 
+import hongik.hospital.domain.Doctor;
 import hongik.hospital.domain.Member;
 import hongik.hospital.domain.Reservation;
 import hongik.hospital.dto.MemberSearchRequestDTO;
@@ -26,6 +27,10 @@ class ReservationServiceTest {
     ReservationRepository reservationRepository;
     @Autowired
     MemberRepository memberRepository;
+    @Autowired
+    MemberService memberService;
+    @Autowired
+    DoctorService doctorService;
 
     @Test
     @Rollback(value = false)
@@ -46,6 +51,32 @@ class ReservationServiceTest {
 
         List<Reservation> memberReserve = reservationService.findMemberReserve(memberSearchRequestDTO);
 
+
+    }
+
+    @Test
+    @Rollback(value = false)
+    void changeReservationStatus(){
+
+        Member member = new Member();
+        member.setName("kim");
+        member.setPhone("010-5915-5203");
+        memberRepository.save(member);
+
+        Doctor doctor = new Doctor();
+        doctor.setName("김내과");
+        doctorService.join(doctor);
+
+        Reservation reservation = new Reservation();
+        reservation.setMember(member);
+        reservation.setDoctor(doctor);
+        reservationRepository.save(reservation);
+
+        System.out.println("reservation.getReserveStatus() = " + reservation.getReserveStatus());
+
+        reservationService.makeReserveComp(reservation);
+
+        System.out.println("reservation.getReserveStatus() = " + reservation.getReserveStatus());
 
     }
 }

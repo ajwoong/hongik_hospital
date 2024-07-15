@@ -29,6 +29,6 @@ public class Doctor {
     private List<Reservation> reservations = new ArrayList<>();
 
     @OneToMany(mappedBy = "doctor")
-    private  List<Record> records = new ArrayList<>();
+    private  List<Trace> records = new ArrayList<>();
 
 }

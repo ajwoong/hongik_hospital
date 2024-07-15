@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -21,8 +22,12 @@ public class DoctorService {
     }
 
     @Transactional
-    public void delete(Doctor doctor){
-        doctorRepository.deleteById(doctor.getId());
+    public void delete(Long doctorId){
+        doctorRepository.deleteById(doctorId);
+    }
+
+    public Optional<Doctor> findOne(Long doctorId){
+        return doctorRepository.findById(doctorId);
     }
 
     public List<Doctor> findDoctors(){
@@ -35,6 +40,10 @@ public class DoctorService {
 
     public List<Doctor> findDoctorsByDepartment(Long departmentId){
        return doctorRepository.findByDepartment_Id(departmentId);
+    }
+
+    public List<Doctor> findDoctorsByDepartmentName(String departmentName){
+        return doctorRepository.findByDepartment_Name(departmentName);
     }
 
 

@@ -1,6 +1,5 @@
 package hongik.hospital.domain;
 
-import hongik.hospital.dto.MemberSigninRequestDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +25,7 @@ public class Member {
     private List<Reservation> reservations = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
-    private  List<Record> records = new ArrayList<>();
+    private  List<Trace> records = new ArrayList<>();
 
 
 
