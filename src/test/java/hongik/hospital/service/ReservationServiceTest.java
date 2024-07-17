@@ -74,7 +74,7 @@ class ReservationServiceTest {
 
         System.out.println("reservation.getReserveStatus() = " + reservation.getReserveStatus());
 
-        reservationService.makeReserveComp(reservation);
+        reservationService.makeReserveComp(reservation.getId());
 
         System.out.println("reservation.getReserveStatus() = " + reservation.getReserveStatus());
 

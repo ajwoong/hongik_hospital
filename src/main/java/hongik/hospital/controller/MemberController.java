@@ -1,6 +1,6 @@
 package hongik.hospital.controller;
 
-import hongik.hospital.dto.MemberSigninRequestDTO;
+import hongik.hospital.dto.MemberSignInRequestDTO;
 import hongik.hospital.service.MemberService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +14,8 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping(value = "/member")
-    public String createMember(MemberSigninRequestDTO memberSigninRequestDTO){
-        memberService.join(memberSigninRequestDTO);
+    public String createMember(MemberSignInRequestDTO memberSignInRequestDTO){
+        memberService.join(memberSignInRequestDTO);
         return "redirect:/";
     }
 

@@ -1,5 +1,6 @@
 package hongik.hospital.service;
 
+import hongik.hospital.domain.Department;
 import hongik.hospital.domain.Hospital;
 import hongik.hospital.repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class HospitalService {
 
     private final HospitalRepository hospitalRepository;
@@ -36,6 +38,13 @@ public class HospitalService {
 
     public List<Hospital> findHospitalsByName(String hospitalName){
         return hospitalRepository.findAllByName(hospitalName);
+    }
+
+    public void findDepart(Hospital hospital) {
+        List<Department> departments = hospital.getDepartments();
+        for (Department department : departments) {
+            System.out.println("department.getName() = " + department.getName());
+        }
     }
 
 }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-public class Reservation {
+public class  Reservation {
 
     @Id @GeneratedValue
     @Column(name = "reservation_id")
